@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+  jobs:
+    Setup:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - name: Set up Go
+          uses: actions/setup-go@v2
+          with:
+            go-version: '1.16'
+        - name: Install dependencies
+          run: go mod download
+    Test:
+      runs-on: ubuntu-latest
+      depends-on: Setup
+      steps:
+        - uses: actions/checkout@v2
+        - name: Install dependencies
+          run: npm install
+        - name: Run tests
+          run: npm run test

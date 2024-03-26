@@ -33,15 +33,14 @@ class LiatrioBootcampSidebarTest(unittest.TestCase):
         driver.get("https://devops-bootcamp.liatr.io")
 
         # check that the sidebar is shown (HINT: check html body attributes)
-
-        body = driver.find_element(By.CLASS_NAME, "ready sticky")
+        body = driver.find_element(By.TAG_NAME, "body")
         assert "ready sticky" in body.get_attribute('class')
 
         # check that there is no CLOSE attribute on the body
         assert "close" not in body.get_attribute('class')
 
         # find the sidebar toggle and toggle it
-        driver.find_element_by_class_name('sidebar-toggle').click()
+        driver.find_element(By.CLASS_NAME, 'sidebar-toggle').click()
 
         # after toggling sidebar, check that it is closed
         assert "close" in body.get_attribute('class')
