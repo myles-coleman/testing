@@ -5,7 +5,38 @@ on:
   pull_request:
     branches:
       - '*'
+
+
 jobs:
+
+  #upload artifact after using composite action to generate string
+  upload:
+    runs-on: self-hosted
+    needs: simple
+    steps:
+
+    #create artifact directory and reference composite action
+    - run: mkdir -p ~/Desktop/bootcamp-dir1/artifact
+    - uses: actions/checkout@v4
+    - id: foo
+      uses: myles-coleman/string-composite-action@v5
+      with:
+        input-string: 'EngagingFinches'
+
+    #retrieve and save output to file and upload artifact
+    - name: Save output to file
+      run: echo "${{ steps.foo.outputs.string }}" > ~/Desktop/bootcamp-dir1/artifact/string.txt
+    - uses: actions/upload-artifact@v4
+      with:
+        name: my-artifact
+        path: ~/Desktop/bootcamp-dir1/artifact/string.txt
+  
+    #call reuse.yml to download artifact and print contents
+    - name: Download artifact and print contents
+      uses: myles-coleman/reusable-workflow@b788b1c01eda45f9b047577e361a683c8b185918
+
+      
+
   Setup:
     runs-on: ubuntu-latest
     steps:
