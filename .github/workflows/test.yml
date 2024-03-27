@@ -22,4 +22,4 @@ jobs:
       - name: Install dependencies
         run: cd code_coverage && npm install
       - name: Run tests
-        run: cd code_coverage && npm run test
+        run: cd code_coverage && npm run coverage
