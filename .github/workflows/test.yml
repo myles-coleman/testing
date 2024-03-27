@@ -19,6 +19,8 @@ jobs:
     needs: Setup
     steps:
       - uses: actions/checkout@v2
+      - name: Change Directory
+        run: cd code_coverage
       - name: Install dependencies
         run: npm install
       - name: Run tests
