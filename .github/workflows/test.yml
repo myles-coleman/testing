@@ -18,7 +18,7 @@ jobs:
         run: go mod download
   Test:
     runs-on: ubuntu-latest
-    depends-on: Setup
+    needs: Setup
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
