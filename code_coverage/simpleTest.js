@@ -22,7 +22,7 @@ describe('App', function() {
         assert.equal(divTwo(4,2), 2);
     });
     it('divTwo should return 0', function(){
-        assert.equal(divTwo(4,0), 2);
+        assert.equal(divTwo(4,0), 0);
     });
 
 });
